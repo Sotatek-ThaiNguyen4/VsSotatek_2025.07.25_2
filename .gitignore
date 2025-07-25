@@ -5,7 +5,18 @@
 *.userosscache
 *.sln.docstates
 
-# Build results
+# Build results - but keep essential DLLs first
+# Important: Keep essential DLL files that are needed for the application
+!**/bin/Debug/dll/
+!**/bin/Release/dll/
+# Keep the custom ViSolution.dll library
+!**/bin/Debug/ViSolution.dll
+!**/bin/Release/ViSolution.dll
+# Keep other essential DLL dependencies but ignore NuGet package DLLs that can be restored
+!**/bin/Debug/OpenCvSharp*.dll
+!**/bin/Release/OpenCvSharp*.dll
+
+# Now ignore most build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -19,11 +30,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-# Important: Keep essential DLL files that are needed for the application
-!**/bin/Debug/dll/
-!**/bin/Release/dll/
-!**/bin/Debug/*.dll
-!**/bin/Release/*.dll
 # But ignore the main executable and PDB files
 **/bin/**/*.exe
 **/bin/**/*.pdb
