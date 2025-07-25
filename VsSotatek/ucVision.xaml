@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="VsSotatek.ucVision"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VsSotatek"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="WPFTheme.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="GridView">
+            <Border Grid.Column="0" x:Name="MainView" Background="Transparent"/>
+        </Grid>
+        
+        <Grid Grid.Row="1" Name="GridControl">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Grid.Row="0" Header="Vision">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Button Name="btnAlignEdit" Content="EDIT ALIGN" Click="btnAlignEdit_Click"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Button Name="btnInspectEdit" Content="EDIT INSPECT" Click="btnInspectEdit_Click"/>
+                    </Grid>
+
+                    <Grid Grid.Column="3">
+                        <Button Name="btnUpdateEdit" Content="UpdateEdit" Click="btnUpdateEdit_Click"/>
+                    </Grid>
+
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</UserControl>

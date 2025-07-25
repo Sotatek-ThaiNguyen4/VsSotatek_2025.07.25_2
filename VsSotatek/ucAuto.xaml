@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="VsSotatek.ucAuto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VsSotatek"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="WPFTheme.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Name="GridView">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <UniformGrid Columns="2">
+                    <GroupBox Header="Align" Margin="3">
+                        <Border x:Name="ViewAlign" Background="Transparent"/>
+                    </GroupBox>
+                    <GroupBox Header="Result" Margin="3">
+                        <Border x:Name="viewResult" Background="Transparent"/>
+                    </GroupBox>
+                </UniformGrid>
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="1" Name="MainView">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="Result log">
+                    <ListView x:Name="lv_Result" ItemsSource="{Binding ResultLogList}">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="True">
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Time" Width="120"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ProcessTime}" Header="ProcessTime" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Result}" Header="Result" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=CaseNG}" Header="CaseNG" Width="200"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Length_Fpcb}" Header="Length_Fpcb" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Length_Epoxy}" Header="Length_Epoxy" Width="100"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Width_Epoxy}" Header="Width_Epoxy" Width="100"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </GroupBox>
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Name="GridControl">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Grid.Row="0" Header="Mode">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <ComboBox Name="cbbMode"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Label Content="{Binding VisionResult}" Foreground="{Binding ResultColor}" FontWeight="Bold" FontSize="14"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Button Name="btnManual" Content="Manual" Click="btnManual_Click"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Button Name="btnCheckFile" Content="Check File" Click="btnCheckFile_Click"/>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Button Name="btnCheckFolder" Content="Check Folder" Click="btnCheckFolder_Click"/>
+                    </Grid>
+
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Header="Sequence Log">
+                <ListView ItemsSource="{Binding SequenceLogList}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Time"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Message}" Header="Message" Width="150"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+        </Grid>
+    </Grid>
+
+</UserControl>

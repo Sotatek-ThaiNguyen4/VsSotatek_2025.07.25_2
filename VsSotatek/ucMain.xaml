@@ -1,0 +1,81 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VsSotatek"
+             xmlns:UIControl="clr-namespace:VsSotatek.UIControl" x:Class="VsSotatek.ucMain"
+             mc:Ignorable="d" 
+             d:DesignHeight="880" d:DesignWidth="1550">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="WPFTheme.xaml"/>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="380"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <UIControl:ProgramNameControl Grid.Column="0"/>
+                <UIControl:CommControl Grid.Column="1"/>
+                <UIControl:VersionControl Grid.Column="2" Version="{Binding Version}"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" x:Name="MainView" Background="Transparent"/>
+
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="77"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <UniformGrid Grid.Row="0" Rows="6" Margin="3">
+                    <RadioButton Content="AUTO" IsChecked="{Binding IsAuto, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Enable, UpdateSourceTrigger=PropertyChanged}" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="VISION" IsChecked="{Binding IsVision, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Enable, UpdateSourceTrigger=PropertyChanged}" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="CALIB" IsChecked="{Binding IsCalib, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Enable, UpdateSourceTrigger=PropertyChanged}" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="DATA" IsChecked="{Binding IsData, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Enable, UpdateSourceTrigger=PropertyChanged}" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="LOG" IsChecked="{Binding IsLog, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Enable, UpdateSourceTrigger=PropertyChanged}" Checked="RadioButton_Checked"/>
+                    <Button Content="EXIT" IsEnabled="{Binding Enable, UpdateSourceTrigger=PropertyChanged}" Click="ExitButton_Click"/>
+                </UniformGrid>
+
+                <UIControl:SystemResource Grid.Row="1"/>
+            </Grid>
+        </Grid>
+
+
+
+
+
+        
+      
+
+       
+
+
+      
+
+      
+
+    </Grid>
+</UserControl>

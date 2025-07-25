@@ -1,0 +1,43 @@
+﻿//22/07/2025
+- Run tập ảnh 34 ngày 22/07
+- Vì không bù được ảnh vùng bóng keo => NG chiều dài Epoxy => thay đổi phương thức detect vùng keo từ 1 blob 
+=> sang thành 2 blob
+
+//23/07/2025
+- Kiểm tra kích thước kéo bất thường đoạn to đoạn nhỏ
+    lấy 50 % độ rộng keo trở lên để kiểm tra => nếu chiều dài keo < 50% chiều dài FPCB thì NG
+
+//24/07/2025
+- sửa lại phần để lấy được độ dài chuẩn hơn
+- phần over keo => sửa để check FPCB từ 0.5mm trở ra
+
+//25/07/2025
+- Sửa lại giao diện và thêm phàn edit Vision
+
+
+
+
+//Note phần sửa sau
+- Tìm cách bù được bóng keo để giảm lỗi Disconec, Vẫn có trường hợp Disconnnect sai
+- trường hợp k bù được bóng keo sẽ bị sai lỗi tràn keo
+thử sử dụng vẽ 1 đường bao quanh tất cả các contour
+
+Mat img = Cv2.ImRead("your_image.png", ImreadModes.Grayscale);
+// Nhị phân hóa ảnh nếu chưa làm
+Mat imgBin = new Mat();
+Cv2.Threshold(img, imgBin, 127, 255, ThresholdTypes.BinaryInv);
+// Tìm tất cả các contour (vì đối tượng là đen trên nền trắng => dùng BinaryInv)
+Cv2.FindContours(imgBin, out Point[][] contours, out _, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+// Lấy bounding rect của từng contour
+var boundingRects = contours.Select(Cv2.BoundingRect);
+// Gộp tất cả boundingRect lại thành một vùng bao ngoài
+Rect merged = boundingRects.Aggregate((r1, r2) => r1 | r2);
+// Vẽ hình chữ nhật bao quanh tất cả
+Mat output = Cv2.CvtColor(img, ColorConversionCodes.GRAY2BGR);
+Cv2.Rectangle(output, merged, Scalar.Red, 2);
+// Hiển thị kết quả
+Cv2.ImShow("Merged Bounding Rect", output);
+Cv2.WaitKey();
+
+- có trường hợp mạch bị cháy k thể nào phát hiện được: S_-00001_-00001_NoneBarcodeID_11-08-33-214.jpg
+                                                
