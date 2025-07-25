@@ -11,8 +11,8 @@ namespace VsSotatek
         public static string _VERSION_ = "Ver.0.0.1"; // Version
         public static string _DATE_MAKE_ = "Date.25.07.2025"; // ngày sửa
 
-        public static string PATH_APP = "D:\\";
-        public static string PATH_SYSTEM = "D:\\VISION SOTATEK\\System";
+        public static string PATH_APP = AppContext.BaseDirectory;
+        public static string PATH_SYSTEM = PATH_APP.TrimEnd('\\');
         public static string PATH_CONFIG = PATH_SYSTEM + "\\config.ini";
         public static string PATH_JOB = PATH_SYSTEM + "\\job.vs";
 

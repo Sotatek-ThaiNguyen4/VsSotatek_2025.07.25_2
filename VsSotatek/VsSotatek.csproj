@@ -83,7 +83,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="ViSolution, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ViSolution.dll</HintPath>
+      <HintPath>ViSolution.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
@@ -164,6 +165,16 @@
     <EmbeddedResource Include="VIsionEdit\ucInspectEdit.resx">
       <DependentUpon>ucInspectEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="config.ini" />
+    <None Include="job.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="job_17_07.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="job_old.vs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -236,4 +247,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.10.0.20241108\build\net48\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.10.0.20241108\build\net48\OpenCvSharp4.runtime.win.props'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>taskkill /f /im VsSotatek.exe &gt;nul 2&gt;&amp;1 || exit 0
+</PreBuildEvent>
+  </PropertyGroup>
 </Project>
